@@ -14,7 +14,7 @@ summ_dir <- "sim-summary"
 sims <- read_csv(file.path(sim_dir, "res-10000sims.csv"))
 
 summ <- sims %>%
-  group_by(term, pop, exposure_prob) %>%
+  group_by(term, pop, exposure_prob, n_per_hhold) %>%
   summarise(
     est_mean = mean(estimate),
     se_mean = mean(std_error),
