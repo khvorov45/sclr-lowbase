@@ -19,7 +19,8 @@ my_guide_legend <- function(name) {
 
 par_labeller <- function(breaks) {
   breaks <- recode(
-    breaks, "beta_0" = "$\\beta_0$", "beta_logTitre" = "$\\beta_T$",
+    breaks,
+    "beta_0" = "$\\beta_0$", "beta_logTitre" = "$\\beta_X$",
     "theta" = "$\\theta$"
   )
   TeX(breaks)
@@ -31,7 +32,8 @@ plot_summ <- function(summ, nph, shps, xlbl) {
     pivot_longer(c(est_mean, se_mean), "measure") %>%
     mutate(
       pop = recode(
-        pop, "exposed" = "Exposed", "general" = "General",
+        pop,
+        "exposed" = "Exposed", "general" = "General",
         "exposed_meas" = "Household infection"
       )
     ) %>%
@@ -48,7 +50,8 @@ plot_summ <- function(summ, nph, shps, xlbl) {
       axis.text.x = element_text(angle = 45, hjust = 1)
     ) +
     facet_wrap(
-      ~measure, scales = "free_y", nrow = 1, strip.position = "left",
+      ~measure,
+      scales = "free_y", nrow = 1, strip.position = "left",
       labeller = as_labeller(c(
         "est_mean" = "Estimate mean", "se_mean" = "Mean SE"
       ))
@@ -70,7 +73,8 @@ plot_summ <- function(summ, nph, shps, xlbl) {
 
 save_plot <- function(name) {
   ggsave_dark(
-    file.path(plot_dir, paste0(name, ".pdf")), dark = FALSE,
+    file.path(plot_dir, paste0(name, ".pdf")),
+    dark = FALSE,
     width = 15, height = 8, units = "cm"
   )
 }
