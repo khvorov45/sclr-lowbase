@@ -3,11 +3,11 @@ title: "Scaled logit model with inclusion of unexposed population"
 author: "Arseniy Khvorov"
 date: "11/12/2019"
 documentclass: article
-geometry: 
+geometry:
   margin=1in
-output: 
+output:
   bookdown::pdf_document2:
-    keep_tex: yes
+    keep_tex: no
     toc: no
     latex_engine: xelatex
 ---
@@ -36,7 +36,7 @@ Where $\lambda^* = \lambda P(E=1)$.
 
 Including the unexposed into the analysis has the expected effect of lowering the baseline estimate by the probabiity of exposure. The infection curve can be expected to have a lower top plateau but the same logistic slope and intercept. The protection curve can be expected to be unaffected since it only depends on the $\beta$ parameters.
 
-However, including the unexposed into the analysis has an effect on the expected standard errors of the parameter estimates. 
+However, including the unexposed into the analysis has an effect on the expected standard errors of the parameter estimates.
 
 # Effect of the unexposed on SE of parameter estimates {#se}
 

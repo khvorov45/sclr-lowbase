@@ -9,3 +9,6 @@
 *.out
 *.pdf
 *.synctex.gz
+*.csv
+.snakemake
+.deps-installed

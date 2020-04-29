@@ -1,15 +1,12 @@
 # Graphs of sim-summary
-# Arseniy Khvorov
-# Created 2019/12/09
-# Last edit 2019/12/09
 
 library(tidyverse)
-library(ggdark) # devtools::install_github("khvorov45/ggdark")
+library(ggdark)
 library(latex2exp)
 
 # Directories to be used later
-summ_dir <- "sim-summary"
-plot_dir <- "sim-plot"
+summ_dir <- here::here("sim-summary")
+plot_dir <- here::here("sim-plot")
 
 # Functions ===================================================================
 
@@ -81,7 +78,7 @@ save_plot <- function(name) {
 
 # Script ======================================================================
 
-summ <- read_csv(file.path(summ_dir, "summ-10000sims.csv"))
+summ <- read_csv(file.path(summ_dir, "sim-summary.csv"), col_types = cols())
 
 plot_summ(summ, 1, c(17, 18), "Proportion exposed")
 save_plot("plot2")

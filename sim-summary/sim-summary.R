@@ -1,17 +1,14 @@
 # Summary of sim
-# Arseniy Khvorov
-# Created 2019/12/09
-# Last edit 2019/12/09
 
 library(tidyverse)
 
 # Directories to be used later
-sim_dir <- "sim"
-summ_dir <- "sim-summary"
+sim_dir <- here::here("sim")
+summ_dir <- here::here("sim-summary")
 
 # Script ======================================================================
 
-sims <- read_csv(file.path(sim_dir, "res-10000sims.csv"))
+sims <- read_csv(file.path(sim_dir, "sim.csv"), col_types = cols())
 
 summ <- sims %>%
   group_by(term, pop, exposure_prob, n_per_hhold) %>%
@@ -22,4 +19,4 @@ summ <- sims %>%
     nsim = length(unique(seed))
   )
 
-write_csv(summ, file.path(summ_dir, "summ-10000sims.csv"))
+write_csv(summ, file.path(summ_dir, "sim-summary.csv"))

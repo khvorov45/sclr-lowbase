@@ -1,7 +1,4 @@
 # Simulations
-# Arseniy Khvorov
-# Created 2019/12/09
-# Last edit 2019/12/09
 
 library(tidyverse)
 library(extraDistr)
@@ -12,7 +9,7 @@ library(furrr)
 plan(multiprocess)
 
 # Directories to be used later
-sim_dir <- "sim"
+sim_dir <- here::here("sim")
 
 # Settings ====================================================================
 
@@ -50,7 +47,8 @@ sim_dat <- function(exposure_prob, n_per_hhold = 1,
 
 fit_sclr_one <- function(dat, pop_name) {
   sclr(
-    status ~ logTitre, dat, seed = attr(dat, "seed"),
+    status ~ logTitre, dat,
+    seed = attr(dat, "seed"),
     algorithm = "newton-raphson"
   ) %>%
     tidy() %>%
@@ -88,13 +86,11 @@ vary_ep <- function(ep_range, n_per_hhold = 1, nsim = 2) {
 }
 
 save_res <- function(sims) {
-  write_csv(sims, file.path(sim_dir, paste0("res-", nsim, "sims.csv")))
+  write_csv(sims, file.path(sim_dir, "sim.csv"))
 }
 
 add_res <- function(sims) {
-  filep <- file.path(sim_dir, paste0("res-", nsim, "sims.csv"))
-  all_sims <- bind_rows(read_csv(filep, col_types = cols()), sims)
-  write_csv(all_sims, filep)
+  write_csv(sims, file.path(sim_dir, "sim.csv"), append = TRUE)
 }
 
 # Script ======================================================================
